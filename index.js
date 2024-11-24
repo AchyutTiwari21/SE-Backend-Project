@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const userRouter = require('./router/user.js');
+const webRouter = require('./router/registerWeb.js')
 const config = require('./config.js');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true, limit: '1mb' }));  // Parse form da
 app.use(cookieParser());
 
 app.use("/user", userRouter);
+app.use("/web", webRouter);
 
 async function main() {
     await mongoose.connect(config.MONGODB_URI);
